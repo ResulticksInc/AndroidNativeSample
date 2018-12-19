@@ -27,5 +27,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:27.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'io.resu:ReAndroidSDK_48469b6c_7024_41a4_97b3_702b052eb6e4:-SNAPSHOT'
+    compile 'io.resu:ReAndroidSDK_8029a331_0cb7_4e02_8bbf_125f9472c3ea:-SNAPSHOT'
+
+
+
 }

@@ -38,7 +38,7 @@
             </intent-filter>
         </receiver>
 
-        <meta-data android:name="resulticks.key" android:value="api_key_your_app_id" />
+        <meta-data android:name="resulticks.key" android:value="api_key_48469b6c_7024_41a4_97b3_702b052eb6e4" />
 
     </application>
 
