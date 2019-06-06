@@ -4,10 +4,6 @@ import android.app.Application;
 
 import io.mob.resu.reandroidsdk.ReAndroidSDK;
 
-/**
- * Created by Buvaneswaran on 17/09/18.
- */
-
 public class MyApplication extends Application {
 
     @Override

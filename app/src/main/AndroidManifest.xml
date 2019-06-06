@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
+            <!--  DeepLink-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -26,10 +28,14 @@
                 <data
                     android:host="open"
                     android:scheme="myapplication" />
+
             </intent-filter>
+
+            <!--*******-->
 
         </activity>
 
+        <!--New Install capture-->
         <receiver
             android:name="io.mob.resu.reandroidsdk.InstallReferrerReceiver"
             android:exported="true">
@@ -37,8 +43,13 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+        <!---->
 
-        <meta-data android:name="resulticks.key" android:value="api_key_48469b6c_7024_41a4_97b3_702b052eb6e4" />
+
+        <!--App ID-->
+        <meta-data
+            android:name="resulticks.key"
+            android:value="api_key_d2b64e6d-8390-11e9-ab0f-06ab9bb94413" />
 
     </application>
 
