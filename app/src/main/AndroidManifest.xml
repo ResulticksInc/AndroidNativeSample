@@ -14,7 +14,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -22,6 +21,7 @@
             <!--  DeepLink-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -36,6 +36,7 @@
         </activity>
 
         <!--New Install capture-->
+
         <receiver
             android:name="io.mob.resu.reandroidsdk.InstallReferrerReceiver"
             android:exported="true">
@@ -43,13 +44,27 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+
         <!---->
 
 
         <!--App ID-->
         <meta-data
             android:name="resulticks.key"
-            android:value="api_key_d2b64e6d-8390-11e9-ab0f-06ab9bb94413" />
+            android:value="api_key_beb81599-56fe-4210-802c-072cade5e484" />
+
+        <!-- App notification icons & Colors -->
+
+        <meta-data
+            android:name="resulticks.default_notification_icon"
+            android:resource="@drawable/ic_launcher" />
+        <meta-data
+            android:name="resulticks.default_notification_icon_transparent"
+            android:resource="@drawable/ic_notifications" />
+        <meta-data
+            android:name="resulticks.default_notification_color"
+            android:resource="@color/colorAccent" />
+
 
     </application>
 

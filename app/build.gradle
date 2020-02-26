@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
     defaultConfig {
-        applicationId "test.com.myapplication"
+        applicationId "com.sample"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,10 +21,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
-    implementation 'io.resu:ReAndroidSDK_8029a331_0cb7_4e02_8bbf_125f9472c3ea:-SNAPSHOT'
-
-
-
+    implementation 'io.resu:ReAndroidSDK_5f7a2e8e_1bdb_4739_9d28_278a2759394c:-SNAPSHOT'
 }
