@@ -48,7 +48,7 @@
         <!---->
 
 
-        <!--App ID-->
+        <!-- Replace your App ID-->
         <meta-data
             android:name="resulticks.key"
             android:value="api_key_beb81599-56fe-4210-802c-072cade5e484" />
