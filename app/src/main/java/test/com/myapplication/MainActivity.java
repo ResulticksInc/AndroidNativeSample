@@ -1,12 +1,11 @@
 package test.com.myapplication;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import io.mob.resu.reandroidsdk.MRegisterUser;
 import io.mob.resu.reandroidsdk.RNotification;
 import io.mob.resu.reandroidsdk.ReAndroidSDK;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     String activityName;
     String fragmentName;
@@ -35,7 +34,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ReAndroidSDK.getInstance(this).getCampaignData(new IDeepLinkInterface() {
 
             /**
-             * App new Install from Play Store
+             * App Install via Smart-link
              */
             @Override
             public void onInstallDataReceived(String data) {
@@ -44,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
 
             /**
-             * App Launch Smart link click from Email or SMS
+             * App Launch via Smart-link click from Email or SMS
              */
             @Override
             public void onDeepLinkData(String data) {
@@ -53,24 +52,38 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             }
 
-            /**
-             *  User tapped the notification
-             */
-            @Override
-            public void onNotificationData(String data) {
-                parseData(data);
-            }
+
         });
 
     }
 
+
     private void Init() {
+
+
         findViewById(R.id.btn_register).setOnClickListener(this);
         findViewById(R.id.btn_add).setOnClickListener(this);
         findViewById(R.id.btn_custom).setOnClickListener(this);
         findViewById(R.id.btn_get_notification).setOnClickListener(this);
         findViewById(R.id.btn_delete_notification).setOnClickListener(this);
         findViewById(R.id.btn_location).setOnClickListener(this);
+
+
+        try {
+            //  User tapped the notification or you can get it from intent
+            if (getIntent() != null && getIntent().hasExtra("activityName")) {
+                activityName = getIntent().getStringExtra("activityName");
+                fragmentName = getIntent().getStringExtra("fragmentName");
+                customParams = new JSONObject(getIntent().getStringExtra("customParams"));
+                Log.e("ActivityName", activityName);
+                Log.e("fragmentName", fragmentName);
+                Log.e("customParams", "" + customParams);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
@@ -81,10 +94,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             activityName = jsonObject.optString("activityName");
             fragmentName = jsonObject.optString("fragmentName");
             customParams = new JSONObject(jsonObject.optString("customParams"));
-
             Log.e("ActivityName", activityName);
             Log.e("fragmentName", fragmentName);
-            Log.e("parseDatacustomParams", ""+customParams);
+            Log.e("customParams", "" + customParams);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +120,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         userDetails.setEducation("PG");
         userDetails.setEmployed(true);
         userDetails.setMarried(true);
-        userDetails.setDeviceToken("Push FCM Or GCM ");
+        userDetails.setDeviceToken("Push FCM Or GCM");
         ReAndroidSDK.getInstance(this).onDeviceUserRegister(userDetails);
     }
 
@@ -127,12 +139,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             customParams.put("customParamKey3", 20.90);
             customParams.put("customParamKey4", true);
 
-            String title = "Notification Title";
-            String description = "Notification Description";
             // The activity name should be with the package name. otherwise the notification does not work.
             String activityName = "test.com.myapplication.MainActivity";
+
+
+            String title = "Notification Title";
+            String description = "Notification Description";
             String fragmentName = "HomeFragment";
             ReAndroidSDK.getInstance(this).addNewNotification(title, description, activityName, fragmentName, customParams);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,13 +177,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
         // Get Notification JSON object list
-        // notificationsByObject = ReAndroidSDK.getInstance(this).getNotificationByObject();
+         notificationsByObject = ReAndroidSDK.getInstance(this).getNotificationByObject();
 
         // Get Notification model object list
         rNotificationsModel = ReAndroidSDK.getInstance(this).getNotifications();
 
 
         Log.e("List Count", "" + rNotificationsModel.size());
+        Log.e("List Count", "" + notificationsByObject.get(0));
 
     }
 
